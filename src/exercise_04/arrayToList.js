@@ -5,18 +5,26 @@ export default function arrayToList(array) {
   //
   // * Please implement this function and pass all the tests in array_to_list_spec.js.
   // * Please do NOT modify the signature of the function.
+  const List = function (value, next) {
+    this.value = value;
+    this.next = next;
+  };
+  const lists = [];
   if (!array.length) {
-    throw new Error('Creating list from undefined array');
-  }else{
-    var list = new Object();
-    list.add = function(key,value){this[key]=value}
-    list.get = function(key){return this[key]}
-    list.add("emu","ston")
-    alert(list.get("emu"))
-    //var arr_list = new Map();
-    //for(var i = 0; i < array.length; i++){
-    //  arr_list.add(array[i]);
-    //}
-    //return arr_list;
+    throw Error('Creating list from undefined array');
+  } else {
+    for (let j = 0; j < array.length; j++) {
+      var list = new List();
+      list.value = j+1;
+      lists.push(list);
+    }
+    for (let i = 0; i < array.length; i++) {
+      if (i + 1 >= array.length) {
+        lists[i].next = null;
+      } else {
+        lists[i].next = lists[i + 1];
+      }
+    }
+    return lists[0];
   }
 }

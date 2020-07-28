@@ -18,5 +18,5 @@ export default function countCharacter(string, prediction) {
   if (string == null) {
     return 0;
   }
-  return string.length;
+  return string.length; 
 }
