@@ -15,18 +15,20 @@ export default class Vector {
     this.x = x;
     this.y = y;
   }
-}
 
-Vector.puls = function(Vector a,Vector b){
-  this.x = a.x + b.x;
-  this.y = a.y + b.y;
-}
+  static plus(a, b) {
+    this.x = a.x + b.x;
+    this.y = a.y + b.y;
+    return this;
+  }
 
-Vector.minus =function(Vector a, Vector b){
-  this.x = a.x - b.x;
-  this.y = a.y - b.y;
-}
+  static minus(a, b) {
+    this.x = a.x - b.x;
+    this.y = a.y - b.y;
+    return this;
+  }
 
-Vector.distance = function(){
-  return math.sqrt(Math.pow(x)+Math.pow(y));
+  distance() {
+    return Math.sqrt(this.x * this.x + this.y * this.y);
+  }
 }
