@@ -11,6 +11,22 @@ export default class Vector {
   // * Please implement the class and pass all the tests in vector_spec.js.
   // * Please do NOT modify the signature of the class. Please put all your code in the Vector
   // class.
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
 
-  // PLEASE DELETE THIS LINE AND ADD YOUR IMPLEMENTATION HERE
+Vector.puls = function(Vector a,Vector b){
+  this.x = a.x + b.x;
+  this.y = a.y + b.y;
+}
+
+Vector.minus =function(Vector a, Vector b){
+  this.x = a.x - b.x;
+  this.y = a.y - b.y;
+}
+
+Vector.distance = function(){
+  return math.sqrt(Math.pow(x)+Math.pow(y));
 }

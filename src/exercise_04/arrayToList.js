@@ -8,10 +8,15 @@ export default function arrayToList(array) {
   if (!array.length) {
     throw new Error('Creating list from undefined array');
   }else{
-    var arr_list = new Map();
-    for(var i = 0; i < array.length; i++){
-      arr_list.add(array[i]);
-    }
-    return arr_list;
+    var list = new Object();
+    list.add = function(key,value){this[key]=value}
+    list.get = function(key){return this[key]}
+    list.add("emu","ston")
+    alert(list.get("emu"))
+    //var arr_list = new Map();
+    //for(var i = 0; i < array.length; i++){
+    //  arr_list.add(array[i]);
+    //}
+    //return arr_list;
   }
 }
