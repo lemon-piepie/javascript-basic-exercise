@@ -11,20 +11,32 @@ export default function waitForAll(...promises) {
   //
   // * Please implement this function and pass all the tests in wait_for_all_spec.js.
   // * Please do NOT modify the signature of the function.
-  for (let i = 0; i < arguments.length; i++) {
-    if (!(arguments[i] instanceof Promise)) {
-      throw new Error('Not all elements are promises.');
-    }
-  }
 
-  Promise.all(promises).then(
-    () => {
-    // 全部成功
-      resolve();
-      return true;
-    }, () => {
-    // 不全部成功，即失败
-      throw new Error('It should not be a success promise');
-    },
-  );
+  /*
+  for (let j = 0; j < arguments.length; j++) {
+    if (!(arguments[j] instanceof Promise)) {
+      i = false;
+    }
+  } */
+
+  let i = true;
+  promises.forEach((item, index) => {
+    if (!isPromise(item)) {
+      i = false;
+    }
+  });
+
+  if (i) {
+    return Promise.all(promises).then((resolved) => {
+      
+    }, (reject) => {
+      return Promise.reject('It should not be a success promise');
+    });
+  }
+  throw new Error('Not all elements are promises.');
+}
+
+
+function isPromise(obj) {
+  return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
