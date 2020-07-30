@@ -1,4 +1,5 @@
-import Stopwatch from '../util/stopwatch';
+import { resolvePlugin } from '@babel/core';
+import stopwatch from '../util/stopwatch';
 
 export default function waitForAll(...promises) {
   // This function returns a promise which will be triggered when all the `promises` are completed.
@@ -10,12 +11,20 @@ export default function waitForAll(...promises) {
   //
   // * Please implement this function and pass all the tests in wait_for_all_spec.js.
   // * Please do NOT modify the signature of the function.
+  for (let i = 0; i < arguments.length; i++) {
+    if (!(arguments[i] instanceof Promise)) {
+      throw new Error('Not all elements are promises.');
+    }
+  }
+
   Promise.all(promises).then(
-    res => {
+    () => {
+    // 全部成功
+      resolve();
+      return true;
+    }, () => {
+    // 不全部成功，即失败
       throw new Error('It should not be a success promise');
-    },
-    err => {
-      Stopwatch.elapsedMs();
     },
   );
 }
