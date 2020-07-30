@@ -24,15 +24,14 @@ export default function waitForAll(...promises) {
       i = false;
     }
   });
+  setTimeout(() => {
+    if (i) {
+      return Promise.all(promises).then((resolved) => {
 
-  if (i) {
-    return Promise.all(promises).then((resolved) => {
-      
-    }, (reject) => {
-      return Promise.reject('It should not be a success promise');
-    });
-  }
-  throw new Error('Not all elements are promises.');
+      }, reject => Promise.reject('It should not be a success promise'));
+    }
+    throw new Error('Not all elements are promises.');
+  }, 1000);
 }
 
 
