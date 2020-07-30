@@ -18,7 +18,6 @@ export default function waitForAll(...promises) {
       i = false;
     }
   } */
-
   let i = true;
   promises.forEach((item, index) => {
     if (!isPromise(item)) {
