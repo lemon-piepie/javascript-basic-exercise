@@ -10,6 +10,7 @@ export default function arrayToList(array) {
     this.next = next;
   };
   const lists = [];
+  
   if (!array.length || array == null) {
     throw new Error('Creating list from undefined array');
   } else {
